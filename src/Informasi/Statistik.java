@@ -1,33 +1,38 @@
 package Informasi;
 
 public class Statistik {
-    private double masaPakai;
-    private int biaya;
-    private int bulan;
+    // private static Statistik instance;
+    // public static Statistik getInstance() {
+    //     if (instance == null) {
+    //         instance = new Statistik();
+    //         }
+    //         return instance;
+            
+    // }
 
-    public Statistik(double masaPakai, int biaya, int bulan) {
-        this.masaPakai = masaPakai;
-        this.biaya = biaya;
-        this.bulan = bulan;
+    // private double masaPakai;
+    // private int biaya;
+    // private int bulan;
+
+    public Statistik() {
+        // this.masaPakai = masaPakai;
+        // this.biaya = biaya;
+        // this.bulan = bulan;
     }
 
-    public void setBiaya(int biaya) {
-        this.biaya = biaya;
-    }
+    // public void setBiaya(int biaya) {
+    //     this.biaya = biaya;
+    // }
 
-    public void setMasaPakai(double masaPakai) {
-        this.masaPakai = masaPakai;
-    }
+    // public void setMasaPakai(double masaPakai) {
+    //     this.masaPakai = masaPakai;
+    // }
 
-    public String showMasaPakai() {
-        return "Statistik{" +
-                "masaPakai=" + masaPakai +
-                '}';
-    }
+    // public String showMasaPakai() {
+    //     return "masaPakai=" + masaPakai;
+    // }
 
-    public String showBiaya() {
-        return "Statistik{" +
-                "biaya=" + biaya +
-                '}';
-    }
+    // public String showBiaya() {
+    //     return "Biaya = " + biaya;
+    // }
 }

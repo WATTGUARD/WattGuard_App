@@ -1,37 +1,77 @@
 package Token;
 
-public class Token{
-    private int nominal;
-    private long nomor_token;
-    private double Kwh;
-    private String metodePembayaran;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Token(int nominal, long nomor_token, double Kwh, String metodePembayaran){
+public class Token {
+    private int nominal;
+    private long nomorToken;
+    private double kwh;
+    private double harga;
+    private static final String[] metodePembayaran = {
+        "Transfer Bank",
+        "E-Wallet",
+        "Gerai Retail",
+        "Cash"
+    };
+
+    private static List<Token> tokenList = new ArrayList<>();
+
+    public Token(int nominal, long nomorToken, double kwh) {
         this.nominal = nominal;
-        this.nomor_token = nomor_token;
-        this.Kwh = Kwh;
-        this.metodePembayaran = metodePembayaran;
+        this.nomorToken = nomorToken;
+        this.kwh = kwh;
+        this.harga = calculateHarga();
+        tokenList.add(this); 
     }
 
-    public int getNominal(){
+    public int getNominal() {
         return nominal;
     }
 
-    public long getNomorToken(){
-        return nomor_token;
+    public long getNomorToken() {
+        return nomorToken;
     }
 
-    public double getKwh(){
-        return Kwh;
+    public double getKwh() {
+        return kwh;
     }
 
-    public String getMetodePembayaran(){
+    public double getHarga() {
+        return harga;
+    }
+
+    public static String[] getMetodePembayaran() {
         return metodePembayaran;
+    }
+
+    public static List<Token> getTokenList() {
+        return tokenList;
+    }
+
+    private double calculateHarga() {
+        return nominal * 0.1 + kwh * 1500;
     }
 
     @Override
     public String toString() {
-        return "Token [Nominal: " + nominal + ", Nomor Token: " + nomor_token + ", Kwh: " + Kwh + "Jenis Pembayaran: " + getMetodePembayaran() + "]";
+        return "Token [Nominal: " + nominal + " - Nomor Token: " + nomorToken + " - Total Energi: " + kwh + "Kwh" + " - Harga: Rp. " + harga + "]";
     }
-}
 
+    public static void displayAllTokens() {
+        System.out.println("=== Data Token dan Harganya ===");
+        for (Token token : tokenList) {
+            System.out.println(token);
+        }
+        System.out.println("=== Metode Pembayaran yang Tersedia ===");
+        for (String metode : metodePembayaran) {
+            System.out.println("- " + metode);
+        }
+    }
+
+    public static void addToken(int nominal, long nomorToken, double kwh) {
+        new Token(nominal, nomorToken, kwh);
+        System.out.println("Token berhasil ditambahkan: " + tokenList.get(tokenList.size() - 1));
+    }
+
+}

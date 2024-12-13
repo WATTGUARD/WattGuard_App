@@ -7,7 +7,6 @@ public class user {
     private String email;
     private String alamat_user;
 
-    // Constructor
     public user(String user_name, String id_user, String pass, String email, String alamat_user) {
         this.user_name = user_name;
         this.id_user = id_user;
@@ -16,7 +15,6 @@ public class user {
         this.alamat_user = alamat_user;
     }
 
-    // Getter methods
     public String getUser_name() {
         return user_name;
     }
@@ -37,7 +35,6 @@ public class user {
         return alamat_user;
     }
 
-    // Setter methods
     public void setUser_name(String user_name) {
         this.user_name = user_name;
     }
@@ -58,7 +55,6 @@ public class user {
         this.alamat_user = alamat_user;
     }
 
-    // Method to print user information
     public void printUserInfo() {
         System.out.println("User Information:");
         System.out.println("Username: " + user_name);

@@ -1,58 +1,156 @@
-package main_Test;//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in th
+package main_Test;
+
+import User.Login;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import Informasi.CS_PLN;
+import Informasi.Chatbot;
+import Token.RiwayatBeli;
+import Token.Token;
+import Informasi.Informasi;
+import java.time.LocalDate;
+
 import java.util.Scanner;
-import Informasi.Cha;
 
 public class WattGuard_Test {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
+        Scanner scanner = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
-        while (true) {
-            System.out.println("\n=== MENU UTAMA ===");
-            System.out.println("1. Layanan Pengguna");
-            System.out.println("2. FAQ");
-            System.out.println("3. Isi Token");
-            System.out.println("4. Riwayat Pembelian");
-            System.out.println("5. Notifikasi");
-            System.out.println("0. Keluar");
+        HashMap<String, String> userMap = new HashMap<>();
+        userMap.put("admin", "admin");
+        userMap.put("user", "user");
+        userMap.put("pengguna", "pengguna");
 
-            System.out.println("Pilih(1-6): ");
-            int choice = sc.nextInt();
+        Chatbot cbt = new Chatbot();
+        CS_PLN pln = new CS_PLN();
 
-            switch (choice) {
-                case 2:
-                    System.out.println("Anda memilih Layanan Pengguna.");
-                    // Tambahkan logika untuk Layanan Pengguna di sini
-                    Chatbot
-                    break;
-                case 3:
-                    System.out.println("Anda memilih FAQ.");
-                    // Tambahkan logika untuk FAQ di sini
-                    break;
-                case 4:
-                    System.out.println("Anda memilih Isi Token.");
-                    // Tambahkan logika untuk Isi Token di sini
-                    break;
-                case 5:
-                    System.out.println("Anda memilih Notifikasi.");
-                    // Tambahkan logika untuk Notifikasi di sini
-                    break;
-                case 6:
-                    System.out.println("Anda memilih Statistik.");
-                    // Tambahkan logika untuk Statistik di sini
-                    break;
-                case 0:
-                    System.out.println("Keluar dari program. Terima kasih.");
-                    return;
-                default:
-                    System.out.println("Pilihan tidak valid. Silakan coba lagi.");
-            }
+        Token.addToken(1, 1111111111L, 13.5);
+        Token.addToken(1, 2222222222L, 35.0);
+        Token.addToken(1, 3333333333L, 75.0);
+
+        List<RiwayatBeli> riwayatPembelian = new ArrayList<>();
+
+        if (!Login.prosesLogin(userMap)) {
+            System.out.println("Keluar dari aplikasi. Terima kasih.");
+            return;
         }
 
+        while (true) {
+            try {
+                System.out.println("\n- - - - MENU UTAMA - - - -");
+                System.out.println("1. Layanan Pengguna");
+                System.out.println("2. FAQ");
+                System.out.println("3. Isi Token");
+                System.out.println("4. Riwayat Pembelian");
+                System.out.println("5. Notifikasi");
+                System.out.println("6. Customer Service PLN");
+                System.out.println("0. Keluar");
 
+                System.out.print("Pilih (0-6): ");
+                int choice = scanner.nextInt();
 
+                switch (choice) {
+                    case 1:
+                        System.out.println("Anda memilih Layanan Pengguna.");
+                        cbt.displayPertanyaan();
+                        break;
+                    case 2:
+                        System.out.println("Anda memilih FAQ.");
+                        Informasi info = new Informasi();
+                        info.daftarInformasi();
 
+                        System.out.print("Pilih nomor informasi (1-5): ");
+                        int infoChoice = scanner.nextInt();
+
+                        info.printData(infoChoice);
+                        break;
+                    case 3:
+                        String idTagihan;
+                        System.out.println("= = = = = = = = = = = = = = = = = = = =");
+                        System.out.println("\n- - - - LIST TOKEN DAN HARGA - - - -");
+                        List<Token> tokens = Token.getTokenList();
+                        for (int i = 0; i < tokens.size(); i++) {
+                            System.out.println((i + 1) + ". " + tokens.get(i));
+                        }
+                        System.out.println("\n- - - - METODE PEMBAYARAN - - - -");
+                        String[] metodePembayaran = Token.getMetodePembayaran();
+                        for (int i = 0; i < metodePembayaran.length; i++) {
+                            System.out.println((i + 1) + ". " + metodePembayaran[i]);
+                        }
+
+                        System.out.print("\nPilih nomor produk token: ");
+                        int tokenChoice = scanner.nextInt();
+                        if (tokenChoice < 1 || tokenChoice > tokens.size()) {
+                            System.out.println("Pilihan token tidak valid.");
+                            break;
+                        }
+
+                        System.out.print("Pilih nomor metode pembayaran: ");
+                        int metodeChoice = scanner.nextInt();
+                        if (metodeChoice < 1 || metodeChoice > metodePembayaran.length) {
+                            System.out.println("Pilihan metode pembayaran tidak valid.");
+                            break;
+                        }
+
+                        Token selectedToken = tokens.get(tokenChoice - 1);
+                        String selectedMetode = metodePembayaran[metodeChoice - 1];
+
+                        System.out.println("\n- - - - KONFIRMASI PEMBELIAN - - - -");
+                        System.out.println("Produk: " + selectedToken);
+                        System.out.println("Metode Pembayaran: " + selectedMetode);
+                        System.out.println();
+                        System.out.println("Pembelian berhasil! Token akan segera dikirim.");
+
+                        idTagihan = "ID" + (riwayatPembelian.size() + 1); 
+
+                        RiwayatBeli newRiwayat = new RiwayatBeli(
+                                selectedToken.getNominal(),
+                                selectedToken.getNomorToken(),
+                                selectedToken.getKwh(),
+                                selectedMetode,
+                                idTagihan,
+                                true,   
+                                LocalDate.now().toString(), 
+                                2500,  
+                                selectedMetode  
+                        );
+                        riwayatPembelian.add(newRiwayat);  
+                        break;
+
+                    case 4:
+                    System.out.println("= = = = = = = = = = DAFTAR TRANSAKSI BULAN INI = = = = = = = = = =");
+                        if (riwayatPembelian.isEmpty()) {
+                            System.out.println("Belum ada riwayat pembelian.");
+                        } else {
+                            System.out.println("\n- - - - RIWAYAT PEMBELIAN - - - -");
+                            for (RiwayatBeli riwayat : riwayatPembelian) {
+                                riwayat.printTransaksi(); 
+                                System.out.println(); 
+                            }
+                        }
+                        break;
+
+                    case 5:
+                        System.out.println("Anda memilih Notifikasi.");
+                        break;
+                    case 6: 
+                        System.out.println("= = = = = = = = = = SELAMAT DATANG DI INFORMASI CUSTOMER SERVICE PLN = = = = = = = = = =");
+                        pln.daftarInformasi();
+                        System.out.print("Pilih lokasi kamu berada: ");
+                        int infoUser = scanner.nextInt();
+                        pln.printData(infoUser);
+                        break;
+                    case 0:
+                        System.out.println("Keluar dari program. Terima kasih.");
+                        return;
+                    default:
+                        System.out.println("Pilihan tidak valid. Silakan coba lagi.");
+                }
+            } catch (Exception e) {
+                System.out.println("Input tidak valid. Masukkan angka antara 0-5.");
+                scanner.nextLine(); 
+            }
+        }
     }
 }
