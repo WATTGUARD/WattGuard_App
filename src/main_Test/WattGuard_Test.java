@@ -67,12 +67,14 @@ public class WattGuard_Test {
                         break;
                     case 3:
                         String idTagihan;
+
                         System.out.println("= = = = = = = = = = = = = = = = = = = =");
                         System.out.println("\n- - - - LIST TOKEN DAN HARGA - - - -");
                         List<Token> tokens = Token.getTokenList();
                         for (int i = 0; i < tokens.size(); i++) {
-                            System.out.println((i + 1) + ". " + tokens.get(i));
+                            System.out.println((i + 1) + ". " + tokens.get(i).toStringWithoutNomorToken());
                         }
+
                         System.out.println("\n- - - - METODE PEMBAYARAN - - - -");
                         String[] metodePembayaran = Token.getMetodePembayaran();
                         for (int i = 0; i < metodePembayaran.length; i++) {
@@ -81,26 +83,56 @@ public class WattGuard_Test {
 
                         System.out.print("\nPilih nomor produk token: ");
                         int tokenChoice = scanner.nextInt();
+                        scanner.nextLine(); // Clear buffer
                         if (tokenChoice < 1 || tokenChoice > tokens.size()) {
                             System.out.println("Pilihan token tidak valid.");
-                            break;
+                            return;
                         }
 
                         System.out.print("Pilih nomor metode pembayaran: ");
                         int metodeChoice = scanner.nextInt();
+                        scanner.nextLine(); // Clear buffer
                         if (metodeChoice < 1 || metodeChoice > metodePembayaran.length) {
                             System.out.println("Pilihan metode pembayaran tidak valid.");
-                            break;
+                            return;
                         }
+
+                        System.out.println("- - - - - Pembayaran melalui DANA - - - - - -");
+                        System.out.print("Silahkan masukkan nomor anda: ");
+                        String danaPay = scanner.nextLine();
 
                         Token selectedToken = tokens.get(tokenChoice - 1);
                         String selectedMetode = metodePembayaran[metodeChoice - 1];
 
-                        System.out.println("\n- - - - KONFIRMASI PEMBELIAN - - - -");
-                        System.out.println("Produk: " + selectedToken);
+                        System.out.println("========================================");
+                        System.out.println("           KONFIRMASI PEMBELIAN         ");
+                        System.out.println("========================================");
+                        System.out.printf("Nominal          : %d%n", selectedToken.getNominal());
+                        System.out.printf("Total Energi     : %.1f KWh%n", selectedToken.getKwh());
+                        System.out.printf("Harga            : Rp. %,.2f%n", selectedToken.getHarga());
+                        System.out.println("Nomor DANA       : " + danaPay);
+                        System.out.println("----------------------------------------");
+                        System.out.print("Konfirmasi Pembelian? (y/n): ");
+                        String confirm = scanner.nextLine();
+
+                        if (!confirm.equalsIgnoreCase("y")) {
+                            System.out.println("Pembelian dibatalkan.");
+                            return;
+                        }
+
+                        System.out.println("========================================");
+                        System.out.println("           RINGKASAN TRANSAKSI         ");
+                        System.out.println("========================================");
+                        System.out.printf("Nominal          : %d%n", selectedToken.getNominal());
+                        System.out.printf("Nomor Token      : %d%n", selectedToken.getNomorToken());
+                        System.out.printf("Total Energi     : %.1f KWh%n", selectedToken.getKwh());
+                        System.out.printf("Harga            : Rp. %,.2f%n", selectedToken.getHarga());
                         System.out.println("Metode Pembayaran: " + selectedMetode);
-                        System.out.println();
-                        System.out.println("Pembelian berhasil! Token akan segera dikirim.");
+                        System.out.println("----------------------------------------");
+                        System.out.println("Pembelian berhasil! Token akan segera dikirim ke perangkat Anda.");
+                        System.out.println("========================================");
+
+
 
                         idTagihan = "ID" + (riwayatPembelian.size() + 1); 
 

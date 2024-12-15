@@ -10,9 +10,8 @@ public class Token {
     private double harga;
     private static final String[] metodePembayaran = {
         "Transfer Bank",
-        "E-Wallet",
-        "Gerai Retail",
-        "Cash"
+        "DANA",
+        "Gerai Retail"
     };
 
     private static List<Token> tokenList = new ArrayList<>();
@@ -56,6 +55,12 @@ public class Token {
     @Override
     public String toString() {
         return "Token [Nominal: " + nominal + " - Nomor Token: " + nomorToken + " - Total Energi: " + kwh + "Kwh" + " - Harga: Rp. " + harga + "]";
+    }
+
+    // Menampilkan Token tanpa Nomor Token
+    public String toStringWithoutNomorToken() {
+        return "Token [Nominal: " + nominal + " - Total Energi: " + kwh 
+            + "Kwh - Harga: Rp. " + harga + "]";
     }
 
     public static void displayAllTokens() {
