@@ -1,5 +1,5 @@
 package Informasi;
-public interface WattGuard_Interface {
+public interface InfoService {
     public void daftarInformasi();
     public void printData(int input);
 }

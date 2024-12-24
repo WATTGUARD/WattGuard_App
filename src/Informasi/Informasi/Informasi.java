@@ -1,6 +1,6 @@
 package Informasi;
 
-public class Informasi implements WattGuard_Interface{
+public class Informasi implements InfoService{
 
     public Informasi() {
     }

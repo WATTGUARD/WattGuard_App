@@ -76,7 +76,6 @@ public class Token {
 
     public static void addToken(int nominal, long nomorToken, double kwh) {
         new Token(nominal, nomorToken, kwh);
-        System.out.println("Token berhasil ditambahkan: " + tokenList.get(tokenList.size() - 1));
     }
 
 }

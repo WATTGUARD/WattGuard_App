@@ -8,8 +8,7 @@ public class RiwayatBeli extends Token {
     private String metodeBayar;
 
     public RiwayatBeli(int nominal, long nomor_token, double Kwh, String metodebayar, 
-                        String idTransaksi, boolean status, String tanggal, int biayaAdmin, 
-                        String metodePembayaranDipilih) {
+                        String idTransaksi, boolean status, String tanggal, int biayaAdmin) {
         super(nominal, nomor_token, Kwh);
         this.metodeBayar = metodebayar;
         this.idTransaksi = idTransaksi;
@@ -53,10 +52,10 @@ public class RiwayatBeli extends Token {
     public void printTransaksi() {
         System.out.println("=== Informasi Transaksi ===");
         System.out.println("ID Transaksi        : " + idTransaksi);
-        System.out.println("Status            : " + (status ? "Lunas" : "Belum Lunas"));
-        System.out.println("Metode Pembayaran : " + metodeBayar);
-        System.out.println("Tanggal           : " + tanggal);
-        System.out.println("Biaya Admin       : Rp " + biayaAdmin);
+        System.out.println("Status              : " + (status ? "Lunas" : "Belum Lunas"));
+        System.out.println("Metode Pembayaran   : " + metodeBayar);
+        System.out.println("Tanggal             : " + tanggal);
+        System.out.println("Biaya Admin         : Rp " + biayaAdmin);
         System.out.println("Total Transaksi     : " + getNominal());
     }
 }

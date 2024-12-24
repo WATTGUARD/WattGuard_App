@@ -4,13 +4,14 @@ import User.Login;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import Informasi.CS_PLN;
+import Informasi.InfoService;
 import Informasi.Chatbot;
+import Informasi.CS_PLN;
+import Informasi.Informasi;
 import Token.RiwayatBeli;
 import Token.Token;
-import Informasi.Informasi;
+import Token.Statistik;
 import java.time.LocalDate;
-
 import java.util.Scanner;
 
 public class WattGuard_Test {
@@ -18,12 +19,15 @@ public class WattGuard_Test {
         Scanner scanner = new Scanner(System.in);
 
         HashMap<String, String> userMap = new HashMap<>();
-        userMap.put("admin", "admin");
+        userMap.put("user123", "mamasayangaku");
         userMap.put("user", "user");
         userMap.put("pengguna", "pengguna");
 
         Chatbot cbt = new Chatbot();
-        CS_PLN pln = new CS_PLN();
+        List<InfoService> infoServices = new ArrayList<>();
+        infoServices.add(new CS_PLN());
+        infoServices.add(new Informasi());
+
 
         Token.addToken(1, 1111111111L, 13.5);
         Token.addToken(1, 2222222222L, 35.0);
@@ -43,8 +47,8 @@ public class WattGuard_Test {
                 System.out.println("2. FAQ");
                 System.out.println("3. Isi Token");
                 System.out.println("4. Riwayat Pembelian");
-                System.out.println("5. Notifikasi");
-                System.out.println("6. Customer Service PLN");
+                System.out.println("5. Customer Service PLN");
+                System.out.println("6. Statistik Penggunaan Token");
                 System.out.println("0. Keluar");
 
                 System.out.print("Pilih (0-6): ");
@@ -57,13 +61,13 @@ public class WattGuard_Test {
                         break;
                     case 2:
                         System.out.println("Anda memilih FAQ.");
-                        Informasi info = new Informasi();
-                        info.daftarInformasi();
+                        InfoService faqService = infoServices.get(0); 
+                        faqService.daftarInformasi();
 
                         System.out.print("Pilih nomor informasi (1-5): ");
                         int infoChoice = scanner.nextInt();
 
-                        info.printData(infoChoice);
+                        faqService.printData(infoChoice);
                         break;
                     case 3:
                         String idTagihan;
@@ -83,7 +87,7 @@ public class WattGuard_Test {
 
                         System.out.print("\nPilih nomor produk token: ");
                         int tokenChoice = scanner.nextInt();
-                        scanner.nextLine(); // Clear buffer
+                        scanner.nextLine(); 
                         if (tokenChoice < 1 || tokenChoice > tokens.size()) {
                             System.out.println("Pilihan token tidak valid.");
                             return;
@@ -91,7 +95,7 @@ public class WattGuard_Test {
 
                         System.out.print("Pilih nomor metode pembayaran: ");
                         int metodeChoice = scanner.nextInt();
-                        scanner.nextLine(); // Clear buffer
+                        scanner.nextLine(); 
                         if (metodeChoice < 1 || metodeChoice > metodePembayaran.length) {
                             System.out.println("Pilihan metode pembayaran tidak valid.");
                             return;
@@ -132,9 +136,7 @@ public class WattGuard_Test {
                         System.out.println("Pembelian berhasil! Token akan segera dikirim ke perangkat Anda.");
                         System.out.println("========================================");
 
-
-
-                        idTagihan = "ID" + (riwayatPembelian.size() + 1); 
+                        idTagihan = "ID" + (riwayatPembelian.size() + 1);
 
                         RiwayatBeli newRiwayat = new RiwayatBeli(
                                 selectedToken.getNominal(),
@@ -142,36 +144,38 @@ public class WattGuard_Test {
                                 selectedToken.getKwh(),
                                 selectedMetode,
                                 idTagihan,
-                                true,   
-                                LocalDate.now().toString(), 
-                                2500,  
-                                selectedMetode  
+                                true,
+                                LocalDate.now().toString(),
+                                2500
                         );
-                        riwayatPembelian.add(newRiwayat);  
+
+                        riwayatPembelian.add(newRiwayat);
                         break;
 
                     case 4:
-                    System.out.println("= = = = = = = = = = DAFTAR TRANSAKSI BULAN INI = = = = = = = = = =");
+                        System.out.println("= = = = = = = = = = DAFTAR TRANSAKSI BULAN INI = = = = = = = = = =");
                         if (riwayatPembelian.isEmpty()) {
                             System.out.println("Belum ada riwayat pembelian.");
                         } else {
                             System.out.println("\n- - - - RIWAYAT PEMBELIAN - - - -");
                             for (RiwayatBeli riwayat : riwayatPembelian) {
-                                riwayat.printTransaksi(); 
-                                System.out.println(); 
+                                riwayat.printTransaksi();
+                                System.out.println();
                             }
                         }
                         break;
-
                     case 5:
-                        System.out.println("Anda memilih Notifikasi.");
-                        break;
-                    case 6: 
                         System.out.println("= = = = = = = = = = SELAMAT DATANG DI INFORMASI CUSTOMER SERVICE PLN = = = = = = = = = =");
-                        pln.daftarInformasi();
+                        infoServices.get(1).daftarInformasi();
                         System.out.print("Pilih lokasi kamu berada: ");
                         int infoUser = scanner.nextInt();
-                        pln.printData(infoUser);
+                        infoServices.get(1).printData(infoUser);
+                        break;
+                    case 6:
+                        System.out.println("= = = = = = = = = = STATISTIK PENGGUNAAN DI BULAN INI = = = = = = = = = =");
+                        Statistik statistik = new Statistik(0, 0, 0);
+
+                        statistik.calculateStatistics(riwayatPembelian);
                         break;
                     case 0:
                         System.out.println("Keluar dari program. Terima kasih.");
@@ -180,8 +184,8 @@ public class WattGuard_Test {
                         System.out.println("Pilihan tidak valid. Silakan coba lagi.");
                 }
             } catch (Exception e) {
-                System.out.println("Input tidak valid. Masukkan angka antara 0-5.");
-                scanner.nextLine(); 
+                System.out.println("Input tidak valid. Masukkan angka antara 0-6.");
+                scanner.nextLine();
             }
         }
     }

@@ -1,6 +1,6 @@
 package Informasi;
 
-public class CS_PLN implements WattGuard_Interface {
+public class CS_PLN implements InfoService {
 
     public CS_PLN() {
     }
