@@ -61,7 +61,7 @@ public class WattGuard_Test {
                         break;
                     case 2:
                         System.out.println("Anda memilih FAQ.");
-                        InfoService faqService = infoServices.get(0); 
+                        InfoService faqService = infoServices.get(1); 
                         faqService.daftarInformasi();
 
                         System.out.print("Pilih nomor informasi (1-5): ");
@@ -166,7 +166,7 @@ public class WattGuard_Test {
                         break;
                     case 5:
                         System.out.println("= = = = = = = = = = SELAMAT DATANG DI INFORMASI CUSTOMER SERVICE PLN = = = = = = = = = =");
-                        infoServices.get(1).daftarInformasi();
+                        infoServices.get(0).daftarInformasi();
                         System.out.print("Pilih lokasi kamu berada: ");
                         int infoUser = scanner.nextInt();
                         infoServices.get(1).printData(infoUser);
