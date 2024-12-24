@@ -18,43 +18,47 @@ public class CS_PLN implements InfoService {
 
     private void printJawaban1() {
         System.out.println("====================================================");
-        System.out.println("Berikut adalah beberapa lokasi PLN di Jakarta:");
-        System.out.println("1. PLN Area Jakarta Pusat: Jl. Banteng Timur No.1, Gambir, Jakarta Pusat.");
-        System.out.println("2. PLN Area Jakarta Selatan: Jl. Warung Buncit Raya No.123, Jakarta Selatan.");
-        System.out.println("3. PLN Area Jakarta Barat: Jl. Tomang Raya No.39, Jakarta Barat.");
-        System.out.println("4. PLN Area Jakarta Timur: Jl. DI Panjaitan Kav. 10, Jakarta Timur.");
-        System.out.println("5. PLN Area Jakarta Utara: Jl. Plumpang Semper No.1, Jakarta Utara.");
+        System.out.println("Berikut adalah beberapa lokasi PLN di Jakarta beserta nomor teleponnya:");
+        System.out.println("1. PLN Area Jakarta Pusat: Jl. Banteng Timur No.1, Gambir, Jakarta Pusat. (Telp: 021-3456789)");
+        System.out.println("2. PLN Area Jakarta Selatan: Jl. Warung Buncit Raya No.123, Jakarta Selatan. (Telp: 021-7654321)");
+        System.out.println("3. PLN Area Jakarta Barat: Jl. Tomang Raya No.39, Jakarta Barat. (Telp: 021-9988776)");
+        System.out.println("4. PLN Area Jakarta Timur: Jl. DI Panjaitan Kav. 10, Jakarta Timur. (Telp: 021-5566778)");
+        System.out.println("5. PLN Area Jakarta Utara: Jl. Plumpang Semper No.1, Jakarta Utara. (Telp: 021-3344556)");
         System.out.println("====================================================");
+
     }
 
     private void printJawaban2() {
         System.out.println("====================================================");
-        System.out.println("Berikut adalah beberapa lokasi PLN di Bandung:");
-        System.out.println("1. PLN Unit Pelaksana Pelayanan Pelanggan (UP3) Bandung: Jl. Cikapundung No.12, Bandung.");
-        System.out.println("2. PLN Unit Layanan Pelanggan (ULP) Bandung Timur: Jl. Raya Ujungberung No.15, Bandung.");
-        System.out.println("3. PLN Unit Layanan Pelanggan (ULP) Bandung Barat: Jl. Cipedes Tengah No.33, Bandung.");
-        System.out.println("4. PLN Distribusi Jawa Barat: Jl. Asia Afrika No.63, Bandung.");
+        System.out.println("Berikut adalah beberapa lokasi PLN di Bandung beserta nomor teleponnya:");
+        System.out.println("1. PLN Unit Pelaksana Pelayanan Pelanggan (UP3) Bandung: Jl. Cikapundung No.12, Bandung. (Telp: 022-1234567)");
+        System.out.println("2. PLN Unit Layanan Pelanggan (ULP) Bandung Timur: Jl. Raya Ujungberung No.15, Bandung. (Telp: 022-7654321)");
+        System.out.println("3. PLN Unit Layanan Pelanggan (ULP) Bandung Barat: Jl. Cipedes Tengah No.33, Bandung. (Telp: 022-3344556)");
+        System.out.println("4. PLN Distribusi Jawa Barat: Jl. Asia Afrika No.63, Bandung. (Telp: 022-9988776)");
         System.out.println("====================================================");
+
     }
 
     private void printJawaban3() {
+       System.out.println("====================================================");
+        System.out.println("Berikut adalah beberapa lokasi PLN di Yogyakarta beserta nomor teleponnya:");
+        System.out.println("1. PLN UP3 Yogyakarta: Jl. Mangkubumi No.18, Yogyakarta. (Telp: 0274-123456)");
+        System.out.println("2. PLN ULP Kotagede: Jl. Pramuka No.123, Kotagede, Yogyakarta. (Telp: 0274-654321)");
+        System.out.println("3. PLN ULP Sleman: Jl. Magelang Km.9, Sleman, Yogyakarta. (Telp: 0274-987654)");
+        System.out.println("4. PLN ULP Bantul: Jl. Bantul No.15, Bantul, Yogyakarta. (Telp: 0274-456789)");
         System.out.println("====================================================");
-        System.out.println("Berikut adalah beberapa lokasi PLN di Yogyakarta:");
-        System.out.println("1. PLN UP3 Yogyakarta: Jl. Mangkubumi No.18, Yogyakarta.");
-        System.out.println("2. PLN ULP Kotagede: Jl. Pramuka No.123, Kotagede, Yogyakarta.");
-        System.out.println("3. PLN ULP Sleman: Jl. Magelang Km.9, Sleman, Yogyakarta.");
-        System.out.println("4. PLN ULP Bantul: Jl. Bantul No.15, Bantul, Yogyakarta.");
-        System.out.println("====================================================");
+
     }
 
     private void printJawaban4() {
         System.out.println("====================================================");
-        System.out.println("Berikut adalah beberapa lokasi PLN di Semarang:");
-        System.out.println("1. PLN UP3 Semarang: Jl. Pemuda No.92-94, Semarang.");
-        System.out.println("2. PLN ULP Tlogosari: Jl. Tlogosari Raya No.8, Semarang.");
-        System.out.println("3. PLN ULP Banyumanik: Jl. Setiabudi No.123, Banyumanik, Semarang.");
-        System.out.println("4. PLN ULP Pedurungan: Jl. Pedurungan Tengah No.45, Semarang.");
+        System.out.println("Berikut adalah beberapa lokasi PLN di Semarang beserta nomor teleponnya:");
+        System.out.println("1. PLN UP3 Semarang: Jl. Pemuda No.92-94, Semarang. (Telp: 024-1234567)");
+        System.out.println("2. PLN ULP Tlogosari: Jl. Tlogosari Raya No.8, Semarang. (Telp: 024-7654321)");
+        System.out.println("3. PLN ULP Banyumanik: Jl. Setiabudi No.123, Banyumanik, Semarang. (Telp: 024-9876543)");
+        System.out.println("4. PLN ULP Pedurungan: Jl. Pedurungan Tengah No.45, Semarang. (Telp: 024-4567890)");
         System.out.println("====================================================");
+
     }
 
     private void printJawaban5() {
